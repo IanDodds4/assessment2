@@ -30,7 +30,7 @@ jobs:
       working-directory: .
 
 
-  terraform:
+  terraform: 
     name: Run Terraform
     runs-on: ubuntu-latest
     defaults:
@@ -40,23 +40,23 @@ jobs:
       contents: write
     steps:
     - name: Checkout the repository
-    uses: actions/checkout@v3
+      uses: actions/checkout@v3
 
     - name: Configure AWS Credentials
-    uses: aws-actions/configure-aws-credentials@v1
-    with:
-      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      aws-region: eu-west-2
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-west-2
 
     - name: Set up Terraform
-    uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v2
 
     - name: Initialise Terraform
-    run: terraform init
+      run: terraform init
 
     - name: Plan changes
-    run: terraform plan
+      run: terraform plan
 
     - name: Apply changes
       run: terraform apply -auto-approve
@@ -72,3 +72,4 @@ jobs:
         add: '*.tfstate*'
         cwd: './terraform-iac'
         message: 'Adding the up-to-date Terraform state file'
+
