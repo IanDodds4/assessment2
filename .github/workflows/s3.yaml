@@ -16,10 +16,10 @@ jobs:
         working-directory: python-survey-app
     steps:
     - name: Checkout the repository
-    uses: actions/checkout@v3
+      uses: actions/checkout@v3
 
     - name: Create application archive
-    run: zip -r code.zip *
+      run: zip -r code.zip *
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -28,4 +28,4 @@ jobs:
         aws-region: eu-west-2
 
     - name: Upload app to S3
-    run: aws s3 cp code.zip s3://${{ inputs.s3_bucket }}/code.zip
+      run: aws s3 cp code.zip s3://${{ inputs.s3_bucket }}/code.zip
